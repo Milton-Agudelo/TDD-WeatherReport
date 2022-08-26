@@ -1,36 +1,60 @@
 package org.adaschool.tdd.repository.document;
 
+import lombok.Getter;
+import org.adaschool.tdd.controller.weather.dto.WeatherReportDto;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
 import java.util.Objects;
+import java.util.UUID;
 
-@Document
-public class WeatherReport
-{
+@Document(value="report")
+@Getter
+public class WeatherReport {
+
     @Id
-    String id;
+    private String id;
 
-    GeoLocation geoLocation;
+    private GeoLocation geoLocation;
 
-    double temperature;
+    private double temperature;
 
-    double humidity;
+    private double humidity;
 
     @Indexed( unique = true )
-    String reporter;
+    private String reporter;
 
-    Date created;
+    private Date created;
 
-    public WeatherReport( GeoLocation geoLocation, double temperature, double humidity, String reporter, Date created )
-    {
+
+
+   /* public WeatherReport(String id, GeoLocation geoLocation, double temperature, double humidity,
+      String reporter, Date created ) {
+        this.id = id;
         this.geoLocation = geoLocation;
         this.temperature = temperature;
         this.humidity = humidity;
         this.reporter = reporter;
         this.created = created;
+    }
+
+    public WeatherReport() {
+    }// */
+
+    public WeatherReport(WeatherReportDto weatherReportDto) {
+        this.id = String.valueOf(UUID.randomUUID());
+        this.geoLocation = weatherReportDto.getGeoLocation();
+        this.temperature = weatherReportDto.getTemperature();
+        this.humidity = weatherReportDto.getHumidity();
+        this.reporter = weatherReportDto.getReporter();
+        this.created = new Date();
+    }
+
+    public String getId()
+    {
+        return id;
     }
 
     public GeoLocation getGeoLocation()
@@ -57,7 +81,7 @@ public class WeatherReport
     {
         return created;
     }
-
+// */
     @Override
     public boolean equals( Object o )
     {

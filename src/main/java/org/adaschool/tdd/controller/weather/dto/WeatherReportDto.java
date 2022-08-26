@@ -1,30 +1,31 @@
 package org.adaschool.tdd.controller.weather.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 import org.adaschool.tdd.repository.document.GeoLocation;
 
 import java.util.Date;
 
-public class WeatherReportDto
-{
+@Getter
+@AllArgsConstructor
+public class WeatherReportDto {
 
-    GeoLocation geoLocation;
+    private GeoLocation geoLocation;
 
-    double temperature;
+    private double temperature;
 
-    double humidity;
+    private double humidity;
 
-    String reporter;
+    private String reporter;
 
-    Date created;
+    private Date created;
 
-    public WeatherReportDto( GeoLocation geoLocation, double temperature, double humidity, String reporter,
-                             Date created )
+    public WeatherReportDto( GeoLocation geoLocation, double temperature, double humidity, String reporter)
     {
         this.geoLocation = geoLocation;
         this.temperature = temperature;
         this.humidity = humidity;
         this.reporter = reporter;
-        this.created = created;
     }
 
     public GeoLocation getGeoLocation()
@@ -45,12 +46,6 @@ public class WeatherReportDto
     public String getReporter()
     {
         return reporter;
-    }
-
-    public Date getCreated()
-    {
-        return created;
-    }
-
+    }// */
 
 }

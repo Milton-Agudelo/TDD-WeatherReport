@@ -12,6 +12,8 @@ public interface WeatherService
 
     WeatherReport findById( String id );
 
+    List<WeatherReport> findAll();
+
     List<WeatherReport> findNearLocation( GeoLocation geoLocation, float distanceRangeInMeters );
 
     List<WeatherReport> findWeatherReportsByName( String reporter );

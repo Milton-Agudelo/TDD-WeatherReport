@@ -18,12 +18,8 @@ import java.util.List;
 @RequestMapping( "/v1/weather" )
 public class WeatherReportController
 {
-    private final WeatherService weatherService;
-
-    public WeatherReportController( @Autowired WeatherService weatherService )
-    {
-        this.weatherService = weatherService;
-    }
+    @Autowired
+    private WeatherService weatherService;
 
     @PostMapping
     public WeatherReport create( @RequestBody WeatherReportDto weatherReportDto )
@@ -35,6 +31,11 @@ public class WeatherReportController
     public WeatherReport findById( @PathVariable String id )
     {
         return weatherService.findById( id );
+    }
+
+    @GetMapping( "/findAll" )
+    public List<WeatherReport> findAll() {
+        return weatherService.findAll();
     }
 
     @PostMapping( "/nearby" )
